@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Rithu's Corner</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Rithu's Corner</h1>
+        <p>Enjoy delicious dishes served with love and warmth!</p>
+        <button onclick="redirectTo('guest')">Customer</button>
+        <br>
+        <button onclick="redirectTo('team')">Staff</button>
+    </div>
+
+    <script>
+        function redirectTo(role) {
+            if (role === 'guest') {
+                window.location.href = 'customer-dashboard.html';
+            } else if (role === 'team') {
+                window.location.href = 'staff-login.html';
+            }
+        }
+    </script>
+</body>
+</html>
