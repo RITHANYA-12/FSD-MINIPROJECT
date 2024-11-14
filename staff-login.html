@@ -33,12 +33,12 @@
             const password = document.getElementById("staffPassword").value;
             const errorMessage = document.getElementById("errorMessage");
 
-            // Retrieve signup info from localStorage
+           
             const isSignedUp = localStorage.getItem("isSignedUp");
             const storedEmail = localStorage.getItem("staffEmail");
             const storedPassword = localStorage.getItem("staffPassword");
 
-            // Reset error message visibility on every new login attempt
+           
             errorMessage.style.display = "none";
 
             if (isSignedUp === "true" && email === storedEmail && password === storedPassword) {
