@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Staff Login</h1>
+        <p>Welcome back! Please log in to continue.</p>
+        
+        <form id="loginForm" onsubmit="validateLogin(event)">
+            <div class="form-field">
+                <input type="email" id="staffEmail" placeholder="Email" required>
+            </div>
+            <div class="form-field">
+                <input type="password" id="staffPassword" placeholder="Password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p>New Staff? <a href="staff-signup.html" style="color: #cf6b95;">Sign up here</a></p>
+            <!-- Error message div will be shown only when needed -->
+            <div id="errorMessage" class="error-message" style="display: none;">You need to sign up first.</div>
+        </form>
+    </div>
+
+    <script>
+        function validateLogin(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("staffEmail").value;
+            const password = document.getElementById("staffPassword").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Retrieve signup info from localStorage
+            const isSignedUp = localStorage.getItem("isSignedUp");
+            const storedEmail = localStorage.getItem("staffEmail");
+            const storedPassword = localStorage.getItem("staffPassword");
+
+            // Reset error message visibility on every new login attempt
+            errorMessage.style.display = "none";
+
+            if (isSignedUp === "true" && email === storedEmail && password === storedPassword) {
+                window.location.href = 'staff-dashboard.html';
+            } else if (isSignedUp !== "true") {
+                errorMessage.textContent = "Please sign up first.";
+                errorMessage.style.display = "block"; // Only display error if user hasn't signed up
+            } else {
+                errorMessage.textContent = "Incorrect email or password.";
+                errorMessage.style.display = "block"; // Show error for invalid credentials
+            }
+        }
+    </script>
+</body>
+</html>
