@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Sign Up</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Staff Sign Up</h1>
+        <p>Please enter your details to sign up.</p>
+        
+        <form id="signupForm" onsubmit="validateSignup(event)">
+            <div class="form-field">
+                <input type="email" id="staffEmail" placeholder="Email" required>
+            </div>
+            <div class="form-field">
+                <input type="password" id="staffPassword" placeholder="Password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+            <p>Already have an account? <a href="staff-login.html" style="color: #cf6b95;">Login here</a></p>
+            
+            <!-- Error message div will be shown only when needed -->
+            <div id="errorMessage" class="error-message" style="display: none;">Please check your details and try again.</div>
+        </form>
+    </div>
+
+    <script>
+        function validateSignup(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("staffEmail").value;
+            const password = document.getElementById("staffPassword").value;
+            const errorMessage = document.getElementById("errorMessage");
+
+            // Reset error message visibility on every new signup attempt
+            errorMessage.style.display = "none";
+
+            // Simple validation logic: Ensure email and password are entered
+            if (email && password) {
+                // Store the user details in localStorage for login validation later
+                localStorage.setItem("isSignedUp", "true");
+                localStorage.setItem("staffEmail", email);
+                localStorage.setItem("staffPassword", password);
+
+                // Redirect to login page after successful signup
+                window.location.href = 'staff-login.html';
+            } else {
+                // Show error message if details are missing or invalid
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
