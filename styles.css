@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-image: url('restaurant.png'); /* replace 'restaurant.jpg' with the path to your restaurant image */
+    background-image: url('restaurant.png'); /* replace with the path to your image */
     background-size: cover;
     background-position: center;
     display: flex;
@@ -16,20 +16,25 @@ body {
 /* Container styling */
 .container {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background for readability */
+    background-color: rgba(0, 0, 0, 0.7); /* Increased opacity for better contrast */
     padding: 30px 40px;
     border-radius: 10px;
     width: 80%;
     max-width: 500px;
-    height: 400px; /* Allows height to adjust with content */
     box-sizing: border-box;
     margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Subtle shadow effect */
+    transition: transform 0.3s ease; /* Adds smooth scaling on hover */
+}
+
+.container:hover {
+    transform: scale(1.02); /* Slight zoom effect */
 }
 
 /* Header and paragraph styling */
 h1 {
-    font-size: 2.5em;
-    color:#dea0bd; /* Golden color for the header */
+    font-size: 2.5vw; /* Responsive font size */
+    color: #dea0bd;
     margin: 0;
 }
 
@@ -41,19 +46,47 @@ p {
 
 /* Unique button styling */
 button {
-    background-color:#cf6b95; /* Warm amber-orange color, complementing the background */
+    background-color: #cf6b95;
     color: white;
     font-size: 1em;
     padding: 12px 24px;
-    margin: 10px;
+    margin: 10px 0;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-    width: 100%; /* Makes the buttons span the width of the container */
+    transition: background-color 0.3s ease-in-out, transform 0.2s;
+    width: 100%;
 }
 
-/* Button hover effect */
 button:hover {
-    background-color: hsl(327, 100%, 41%); /* Darker amber color on hover for better contrast */
+    background-color: hsl(327, 100%, 41%);
+    transform: scale(1.05); /* Scale up slightly on hover */
+}
+
+/* Input field styling (if needed) */
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #cf6b95;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f5edf1;
+    font-size: 1em;
+}
+
+input[type="text"]::placeholder,
+input[type="password"]::placeholder,
+input[type="email"]::placeholder {
+    color: #f5edf1; /* Lighter placeholder text */
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="email"]:focus {
+    outline: none;
+    border-color: #dea0bd;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
