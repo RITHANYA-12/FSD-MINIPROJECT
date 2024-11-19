@@ -20,8 +20,7 @@
             </div>
             <button type="submit">Login</button>
             <p>New Staff? <a href="staff-signup.html" style="color: #cf6b95;">Sign up here</a></p>
-            <!-- Error message div will be shown only when needed -->
-            <div id="errorMessage" class="error-message" style="display: none;">You need to sign up first.</div>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
         </form>
     </div>
 
@@ -33,22 +32,23 @@
             const password = document.getElementById("staffPassword").value;
             const errorMessage = document.getElementById("errorMessage");
 
-           
             const isSignedUp = localStorage.getItem("isSignedUp");
             const storedEmail = localStorage.getItem("staffEmail");
             const storedPassword = localStorage.getItem("staffPassword");
 
-           
             errorMessage.style.display = "none";
 
-            if (isSignedUp === "true" && email === storedEmail && password === storedPassword) {
-                window.location.href = 'staff-dashboard.html';
-            } else if (isSignedUp !== "true") {
+            if (isSignedUp !== "true") {
                 errorMessage.textContent = "Please sign up first.";
-                errorMessage.style.display = "block"; // Only display error if user hasn't signed up
+                errorMessage.style.display = "block";
+                return;
+            }
+
+            if (email === storedEmail && password === storedPassword) {
+                window.location.href = 'staff-dashboard.html';
             } else {
                 errorMessage.textContent = "Incorrect email or password.";
-                errorMessage.style.display = "block"; // Show error for invalid credentials
+                errorMessage.style.display = "block";
             }
         }
     </script>

@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h1>Staff Sign Up</h1>
-        <p>Please enter your details to sign up.</p>
+        <p>Please enter your email and password to sign up.</p>
         
         <form id="signupForm" onsubmit="validateSignup(event)">
             <div class="form-field">
@@ -20,9 +20,7 @@
             </div>
             <button type="submit">Sign Up</button>
             <p>Already have an account? <a href="staff-login.html" style="color: #cf6b95;">Login here</a></p>
-            
-            <!-- Error message div will be shown only when needed -->
-            <div id="errorMessage" class="error-message" style="display: none;">Please check your details and try again.</div>
+            <div id="errorMessage" class="error-message" style="display: none;"></div>
         </form>
     </div>
 
@@ -34,21 +32,19 @@
             const password = document.getElementById("staffPassword").value;
             const errorMessage = document.getElementById("errorMessage");
 
-            // Reset error message visibility on every new signup attempt
+            const storedEmail = localStorage.getItem("staffEmail");
+
             errorMessage.style.display = "none";
 
-            // Simple validation logic: Ensure email and password are entered
-            if (email && password) {
-                // Store the user details in localStorage for login validation later
-                localStorage.setItem("isSignedUp", "true");
+            if (storedEmail) {
+                errorMessage.textContent = "This email is already registered. Please log in.";
+                errorMessage.style.display = "block";
+            } else {
                 localStorage.setItem("staffEmail", email);
                 localStorage.setItem("staffPassword", password);
-
-                // Redirect to login page after successful signup
+                localStorage.setItem("isSignedUp", "true");
+                
                 window.location.href = 'staff-login.html';
-            } else {
-                // Show error message if details are missing or invalid
-                errorMessage.style.display = "block";
             }
         }
     </script>

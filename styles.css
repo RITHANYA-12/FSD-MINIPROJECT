@@ -11,6 +11,7 @@ body {
     align-items: center;
     height: 100vh;
     color: #dea0bd;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Container styling */
@@ -19,7 +20,7 @@ body {
     background-color: rgba(0, 0, 0, 0.7); /* Increased opacity for better contrast */
     padding: 30px 40px;
     border-radius: 10px;
-    width: 80%;
+    width: 100%;
     max-width: 500px;
     box-sizing: border-box;
     margin-top: 20px;
@@ -44,7 +45,62 @@ p {
     margin: 10px 0 20px;
 }
 
-/* Unique button styling */
+/* Form field container styling */
+.form-field {
+    margin: 15px 0;
+    text-align: left;
+}
+
+/* Label styling */
+label {
+    font-size: 1.1em;
+    color: #f5edf1;
+}
+
+/* AC or Non-AC field */
+select {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #cf6b95;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f5edf1;
+    font-size: 1em;
+    appearance: none; /* Removes default dropdown arrow */
+    cursor: pointer;
+}
+
+/* Options styling in the dropdown */
+select option {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7); /* Background for dropdown options */
+    color: white; /* Text color for options */
+    font-size: 1em;
+    border: none;
+}
+
+/* Placeholder text styling for the first option */
+select option:first-child {
+    color: #f5edf1; /* Placeholder color */
+    font-style: italic; /* Italicize placeholder text */
+}
+
+/* Placeholder text styling */
+input::placeholder,
+select::placeholder {
+    color: #f5edf1; /* Lighter placeholder text */
+}
+
+/* Focus effect for input fields */
+input:focus,
+select:focus {
+    outline: none;
+    border-color: #dea0bd;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Button styling */
 button {
     background-color: #cf6b95;
     color: white;
@@ -63,30 +119,180 @@ button:hover {
     transform: scale(1.05); /* Scale up slightly on hover */
 }
 
-/* Input field styling (if needed) */
+/* Input field styling */
 input[type="text"],
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+input[type="number"],
+input[type="tel"],
+input[type="datetime-local"] {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
     border: 1px solid #cf6b95;
     border-radius: 5px;
     background-color: rgba(255, 255, 255, 0.1);
-    color: #f5edf1;
+    color: #dea0bd;
     font-size: 1em;
 }
+input[type="number"]::-webkit-inner-spin-button {
+    color: white; /* Change spin button to white */
+}
 
+/* Style the date picker icon */
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    color: white; /* Change calendar picker icon to white */
+    filter: invert(1); /* Inverts colors to make the icon white */
+    cursor: pointer;
+}
+
+/* Placeholder text styling */
 input[type="text"]::placeholder,
 input[type="password"]::placeholder,
-input[type="email"]::placeholder {
+input[type="email"]::placeholder,
+input[type="number"]::placeholder,
+input[type="tel"]::placeholder,
+input[type="datetime-local"]::placeholder {
     color: #f5edf1; /* Lighter placeholder text */
 }
 
+/* Focus effect for input fields */
 input[type="text"]:focus,
 input[type="password"]:focus,
-input[type="email"]:focus {
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="tel"]:focus,
+input[type="datetime-local"]:focus {
     outline: none;
     border-color: #dea0bd;
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
+
+/* Message styling for success and error messages */
+.message {
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.success-message {
+    font-size: 25px;
+    color: #cf6b95;
+}
+
+.error-message {
+    font-size: 16px;
+    color: #cf6b95;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 2em;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    input[type="number"],
+    input[type="tel"],
+    input[type="datetime-local"],
+    select {
+        font-size: 1em;
+    }
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Ensures table borders are merged */
+    margin-top: 20px;
+    overflow-x: auto; /* Make table horizontally scrollable on smaller screens */
+    table-layout: fixed; /* Fix table layout to prevent overflow */
+}
+
+th {
+    background-color: #dea0bd; /* Pink background for headings */
+    color: white; /* White text for headings */
+    padding: 12px 15px;
+    text-align: left;
+}
+
+td {
+    background-color: rgba(0, 0, 0, 0.7); 
+    white-space: nowrap;/* Dark background for table rows */
+    color: white; /* White text for table data */
+    padding: 12px 15px;
+    border-bottom: 1px solid #cf6b95; /* Light pink border between rows */
+}
+
+tr:hover td {
+    background-color: rgba(255, 255, 255, 0.1); /* Light hover effect on rows */
+}
+
+/* Styling for delete button */
+.delete-btn {
+    background-color: #cf6b95;
+    color: white;
+    border: none;
+    padding: 5px 10px; /* Adjust padding */
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex; /* Use flexbox to align text */
+    justify-content: flex-start; /* Align text to the left */
+    align-items: center; /* Vertically center the text */
+    min-width: 67px;
+    max-width: 100%;
+    white-space: nowrap; /* Prevents text from wrapping */
+}
+
+
+.delete-btn:hover {
+    background-color: hsl(327, 100%, 41%);
+}
+/* Style for form fields */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+textarea {
+    color: #dea0bd; /* Text color for input fields */
+}
+
+/* Label color for Full Name, Phone Number, Table Number, Rating, and Suggestions */
+label {
+    color: #dea0bd; /* Label color for these fields */
+}
+/* Styling for the suggestions textarea */
+textarea {
+    width: 100%; /* Makes the textarea span the full width of its container */
+    padding: 10px; /* Adds padding inside the textarea */
+    margin: 10px 0; /* Adds spacing above and below the textarea */
+    border: 1px solid #cf6b95; /* Light pink border around the textarea */
+    border-radius: 5px; /* Rounded corners */
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    color: #f5edf1; /* Light color text inside textarea */
+    font-size: 1em; /* Standard font size */
+    resize: vertical; /* Allows vertical resizing of the textarea */
+}
+
+/* Placeholder text styling for the textarea */
+textarea::placeholder {
+    color: #f5edf1; /* Light color placeholder text */
+    font-style: italic; /* Italicize placeholder text */
+}
+
+/* Focus effect for the textarea */
+textarea:focus {
+    outline: none; /* Removes the default outline */
+    border-color: #dea0bd; /* Changes the border color on focus */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Adds a glow effect */
+}
+
