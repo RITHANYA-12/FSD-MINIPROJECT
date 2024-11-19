@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Profile</h1>
+        <p><strong>Name:</strong> <span id="profileName"></span></p>
+        <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+        <p><strong>Age:</strong> <span id="profileAge"></span></p>
+        <p><strong>Address:</strong> <span id="profileAddress"></span></p>
+        <p><strong>Phone Number:</strong> <span id="profilePhoneNumber"></span></p>
+        
+        <!-- Back to Dashboard Button -->
+        <button onclick="goToDashboard()">Back to Dashboard</button>
+        <button onclick="goBack()">Go Back to Profile Update</button>
+    </div>
+
+    <script>
+        // Load the updated profile data from localStorage
+        window.onload = function() {
+            const name = localStorage.getItem("staffName");
+            const email = localStorage.getItem("staffEmail");
+            const age = localStorage.getItem("staffAge");
+            const address = localStorage.getItem("staffAddress");
+            const phoneNumber = localStorage.getItem("staffPhoneNumber");
+
+            // Display the data on the profile page
+            document.getElementById("profileName").innerText = name;
+            document.getElementById("profileEmail").innerText = email;
+            document.getElementById("profileAge").innerText = age;
+            document.getElementById("profileAddress").innerText = address;
+            document.getElementById("profilePhoneNumber").innerText = phoneNumber;
+        };
+
+        // Go back to the profile update page
+        function goBack() {
+            window.location.href = "update-profile.html";
+        }
+
+        // Redirect to the staff dashboard page
+        function goToDashboard() {
+            window.location.href = "staff-dashboard.html"; // Replace with the actual path to your dashboard page
+        }
+    </script>
+</body>
+</html>

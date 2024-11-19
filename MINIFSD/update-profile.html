@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Update Your Profile</h1>
+        <form id="updateProfileForm" onsubmit="updateProfile(event)">
+            <div class="form-field">
+                <input type="text" id="employeeName" placeholder="Name" required>
+            </div>
+            <div class="form-field">
+                <input type="email" id="employeeEmail" placeholder="Email" required>
+            </div>
+            <div class="form-field">
+                <input type="password" id="employeePassword" placeholder="Password" required>
+            </div>
+            <div class="form-field">
+                <input type="number" id="employeeAge" placeholder="Age" required>
+            </div>
+            <div class="form-field">
+                <input type="text" id="employeeAddress" placeholder="Address" required>
+            </div>
+            <div class="form-field">
+                <input type="tel" id="employeePhoneNumber" placeholder="Phone Number" required>
+            </div>
+            <button type="submit">Update Profile</button>
+            <!-- Success or error message will be displayed here -->
+            <div id="message" class="message" style="display: none;"></div>
+        </form>
+    </div>
+
+    <script>
+        function updateProfile(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("employeeName").value;
+            const email = document.getElementById("employeeEmail").value;
+            const password = document.getElementById("employeePassword").value;
+            const age = document.getElementById("employeeAge").value;
+            const address = document.getElementById("employeeAddress").value;
+            const phoneNumber = document.getElementById("employeePhoneNumber").value;
+            const message = document.getElementById("message");
+
+            const storedEmail = localStorage.getItem("staffEmail");
+
+            // Reset any previous messages
+            message.style.display = "none"; 
+
+            if (email === storedEmail) {
+                // Simulate a POST request for password (in a real app, you would send this data to a backend server)
+                // For now, we'll just store the data in localStorage
+
+                localStorage.setItem("staffName", name);
+                localStorage.setItem("staffEmail", email);
+                localStorage.setItem("staffPassword", password);  // In a real app, password should be handled securely (hashing etc.)
+                localStorage.setItem("staffAge", age);
+                localStorage.setItem("staffAddress", address);
+                localStorage.setItem("staffPhoneNumber", phoneNumber);
+
+                // Display a success message
+                message.style.display = "block";
+                message.textContent = "Profile updated successfully!";
+                message.className = "message success-message"; // Apply success style
+
+                // Redirect to the profile page after a short delay
+                setTimeout(() => {
+                    window.location.href = "profile.html";
+                }, 2000); // Redirects after 2 seconds
+            } else {
+                // If email doesn't match, show error message
+                message.style.display = "block";
+                message.textContent = "No matching email found. Please log in first.";
+                message.className = "message error-message"; // Apply error style
+            }
+        }
+    </script>
+</body>
+</html>

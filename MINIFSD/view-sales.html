@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Sales</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        // Function to update the sales table with stored orders
+        function updateSalesTable() {
+            const orders = JSON.parse(localStorage.getItem("orders")) || [];
+            const tableBody = document.getElementById("salesTable").getElementsByTagName("tbody")[0];
+
+            // Clear the table before updating
+            tableBody.innerHTML = "";
+
+            // Loop through the stored orders and add them to the table
+            let totalSales = 0;
+            orders.forEach((order) => {
+                const row = document.createElement("tr");
+
+                const cellName = document.createElement("td");
+                cellName.textContent = order.name;
+                row.appendChild(cellName);
+
+                const cellQuantity = document.createElement("td");
+                cellQuantity.textContent = order.quantity;
+                row.appendChild(cellQuantity);
+
+                const cellPrice = document.createElement("td");
+                cellPrice.textContent = `Rs.${parseFloat(order.price).toFixed(2)}`;
+                row.appendChild(cellPrice);
+
+                const cellTotal = document.createElement("td");
+                cellTotal.textContent = `Rs.${order.total}`;
+                row.appendChild(cellTotal);
+
+                tableBody.appendChild(row);
+
+                // Update the total sales
+                totalSales += parseFloat(order.total);
+            });
+
+            // Display total sales
+            document.getElementById("totalSales").textContent = `Total Sales: Rs.${totalSales.toFixed(2)}`;
+        }
+
+        // Initialize the sales table when the page loads
+        window.onload = function() {
+            updateSalesTable();
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Sales Overview</h2>
+        
+        <!-- Sales table displaying all orders -->
+        <table id="salesTable">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sales data will be populated dynamically here -->
+            </tbody>
+        </table>
+
+        <!-- Display total sales -->
+        <div id="totalSales" class="total-sales"></div>
+
+        <!-- Button to go back to the main dashboard -->
+        <button onclick="window.location.href='staff-dashboard.html'">Back to Dashboard</button>
+    </div>
+</body>
+</html>

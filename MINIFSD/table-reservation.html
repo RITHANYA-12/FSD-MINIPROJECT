@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Reservation</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        function handleFormSubmission(event) {
+            event.preventDefault(); // Prevent the form from reloading the page
+
+            // Display the success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.textContent = "Table reserved successfully!";
+            successMessage.style.display = "block";
+
+            // Optionally, clear the form fields
+            document.getElementById('reservationForm').reset();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Reserve a Table</h2>
+        <form id="reservationForm" onsubmit="handleFormSubmission(event)">
+            <div class="form-field">
+                <label for="name">Name:</label>
+                <input type="text" id="customerName" placeholder="Your Name" required>
+            </div>
+
+            <div class="form-field">
+                <label for="acOption">AC or Non-AC:</label>
+                <select id="acOption" required>
+                    <option value="">Select Option</option>
+                    <option value="AC">AC</option>
+                    <option value="Non-AC">Non-AC</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="tableNumber">Table Number:</label>
+                <select id="tableNumber" required>
+                    <option value="">Select Table Number</option>
+                    <!-- Table numbers from 1 to 20 -->
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                </select>
+            </div>
+
+            <div class="form-field">
+                <label for="reservationDate">Reservation Date:</label>
+                <input type="datetime-local" id="reservationDate" required>
+            </div>
+            <div class="form-field">
+                <label for="numGuests">Number of Guests:</label>
+                <input type="number" id="numGuests" min="1" required>
+            </div>
+
+            <button type="submit">Reserve Table</button>
+        </form>
+        <button onclick="window.location.href='customer-dashboard.html'">Back to Services</button>
+
+        <!-- Success message container -->
+        <div id="successMessage" class="success-message" style="display: none;"></div>
+    </div>
+</body>
+</html>
